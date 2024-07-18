@@ -44,11 +44,20 @@ export function Circle() {
 
     </div>
 }
-
-export function Avatar({ name, size = "small" }: { name: string, size?: "small" | "big" }) {
-    return <div className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${size === "small" ? "w-6 h-6" : "w-10 h-10"}`}>
-    <span className={`${size === "small" ? "text-xs" : "text-md"} font-extralight text-gray-600 dark:text-gray-300`}>
-        {name[0]}
-    </span>
-</div>
-}
+type AvatarProps = {
+    name: string;
+    size?: "small" | "big";
+  };
+  
+export const Avatar: React.FC<AvatarProps> = ({ name, size = "small" }) => {
+    const avatarSizeClass = size === "small" ? "w-6 h-6" : "w-10 h-10";
+    const textClass = size === "small" ? "text-xs" : "text-md";
+  
+    return (
+      <div className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${avatarSizeClass}`}>
+        <span className={`${textClass} font-extralight text-gray-600 dark:text-gray-300`} aria-label={`Avatar for ${name}`}>
+          {name[0]}
+        </span>
+      </div>
+    );
+  };

@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "strict": true,
     "lib": [
       "ESNext"
     ],
     "types": [
-      "@cloudflare/workers-types"
+      "node",
+      "@types/express"
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

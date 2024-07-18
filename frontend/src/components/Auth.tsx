@@ -14,7 +14,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
     async function sendRequest() {
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);
+            console.log(type)
+            const response = await axios.post(`${BACKEND_URL}/api/v1/users/${type === "signup" ? "signup" : "signin"}`, postInputs);
             const jwt = response.data;
             localStorage.setItem("token", jwt);
             navigate("/blogs");
@@ -29,7 +30,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             <div>
                 <div className="px-10">
                     <div className="text-3xl font-extrabold">
-                        Create an account
+                        {type === "signin" ? "Sign in to existing account": "Create an account"}
                     </div>
                     <div className="text-slate-500">
                         {type === "signin" ? "Don't have an account?" : "Already have an account?" }
@@ -39,13 +40,13 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                     </div>
                 </div>
                 <div className="pt-8">
-                    {type === "signup" ? <LabelledInput label="Name" placeholder="Harkirat Singh..." onChange={(e) => {
+                    {type === "signup" ? <LabelledInput label="Name" placeholder="Kalyan..." onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
                             name: e.target.value
                         })
                     }} /> : null}
-                    <LabelledInput label="Username" placeholder="harkirat@gmail.com" onChange={(e) => {
+                    <LabelledInput label="Username" placeholder="kalyan@gmail.com" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
                             username: e.target.value
